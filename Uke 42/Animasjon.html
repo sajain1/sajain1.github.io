@@ -6,6 +6,19 @@
     <title>Animasjon</title>
     <style>
 
+        @keyframes move {
+            0%{
+                background-position: 0 0;
+
+            }
+            50% {
+                background-position: 3000% 3000%;
+            }
+            100% {
+                background-position: -3000% -3000%;
+                transform: scale(2);
+            }
+        }
 
 
         @keyframes catwalk {
@@ -35,7 +48,7 @@
             font-size: 12rem;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: move steps(30) 15s infinite;
+            animation: move steps(30) 15s infinite alternate;
             background-image: url(http://admissions.vanderbilt.edu/insidedores/manage/wp-content/uploads/doge-pattern-27481-2880x1800.jpg)
         }
 
