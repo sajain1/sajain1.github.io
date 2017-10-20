@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pus som går</title>
+    <style>
+
+        @keyframes moveright {
+            to{
+                transform: translateX(800px);
+            }
+
+
+        }
+        @keyframes catwalk {
+            to{
+                background-position: 0 -2280px;
+            }
+
+        }
+
+
+        .pus {
+            background-image: url("Feridg IT TEST-01.png");
+            height: 500px;
+            width: 500px;
+            animation: catwalk 1s steps(12) infinite alternate;
+
+
+        }
+        .right {
+            position: absolute;
+            width: 500spx;
+            height: 190px;
+            animation: moveright steps(48) 4s;
+        }
+
+        #k1 { animation-delay: 0s; }
+        #k2 { animation-delay: 1s; }
+        #k3 { animation-delay: 0.5s; }
+        #k4 { animation-delay: 3s; }
+
+    </style>
+
+
+
+</head>
+<body>
+<div class="right" id="k1">
+    <div class="pus"></div>
+</div>
+<div class="right" id="k2">
+    <div class="pus"></div>
+</div>
+<div class="right" id="k3">
+    <div class="pus"></div>
+</div>
+<div class="right" id="k4">
+    <div class="pus"></div>
+</div>
+
+
+
+
+
+</body>
+</html>
