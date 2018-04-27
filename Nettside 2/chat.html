@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chat</title>
+</head>
+<style>
+    footer > input {
+        position: center;
+        display: grid;
+       width: 100%;
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+    }
+
+</style>
+
+<body>
+
+<main>
+    <div id="alleMeldinger"></div>
+</main>
+<footer>
+<input type="text" id="minMelding">
+
+</footer>
+
+
+
+<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDypEFnH1h81vijFs73_FABhg86LYeJipU",
+        authDomain: "meme-f8261.firebaseapp.com",
+        databaseURL: "https://meme-f8261.firebaseio.com",
+        projectId: "meme-f8261",
+        storageBucket: "meme-f8261.appspot.com",
+        messagingSenderId: "637914597653"
+    };
+    firebase.initializeApp(config);
+</script>
+
+<script>
+    let db = firebase.database();
+    let meldinger = db.ref("meldinger");
+    let minMelding = document.getElementById("minMelding");
+    let alleMeldinger = document.getElementById("alleMeldinger");
+    function lagreMelding() {
+        meldinger.push(minMelding.value);
+        minMelding.value = "";
+    }
+    function visMelding(snap) {
+        alleMeldinger.innerHTML += "<p>" + snap.val() + "</p>";
+    }
+    minMelding.onchange = lagreMelding;
+    meldinger.on("child_added", visMelding);
+</script>
+
+</body>
+</html>
