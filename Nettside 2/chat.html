@@ -6,27 +6,58 @@
     <title>Chat</title>
 </head>
 <style>
-    footer > input {
+    main > section > input {
         position: center;
         display: grid;
        width: 100%;
-        width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
         box-sizing: border-box;
     }
+
+    main {
+        overflow-y: scroll;
+        height: calc(100vh - 40px);
+    }
+
+    #alleMeldinger {
+
+        border: 15px darkgrey;
+
+
+    }
+    p:nth-child(odd) {
+        border: 2px solid #dedede;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px 0;
+        color: #717171;
+    }
+    p:nth-child(even) {
+        border: 2px solid #dedede;
+        background-color: dodgerblue;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px 0;
+        color: #717171;
+
+    }
+
+
 
 </style>
 
 <body>
 
 <main>
-    <div id="alleMeldinger"></div>
-</main>
-<footer>
-<input type="text" id="minMelding">
 
-</footer>
+    <section>
+<div id="alleMeldinger" ></div>
+    <input type="text" id="minMelding" placeholder="Skriv en melding...">
+    </section>
+</main>
+
 
 
 
@@ -54,10 +85,18 @@
         minMelding.value = "";
     }
     function visMelding(snap) {
-        alleMeldinger.innerHTML += "<p>" + snap.val() + "</p>";
+        alleMeldinger.innerHTML += "<p class='teksty'>" + snap.val() + "</p>";
     }
     minMelding.onchange = lagreMelding;
     meldinger.on("child_added", visMelding);
+    function addMessage() {
+        // here you add the new message to DOM
+        // ...
+
+        // then you can scroll down once to show the new messages
+        var elem = document.getElementById('Commentbox');
+        elem.scrollTop = elem.scrollHeight;
+    }
 </script>
 
 </body>
