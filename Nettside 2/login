@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sample FirebaseUI App</title>
+    <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
+
+<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDypEFnH1h81vijFs73_FABhg86LYeJipU",
+    authDomain: "meme-f8261.firebaseapp.com",
+    databaseURL: "https://meme-f8261.firebaseio.com",
+    projectId: "meme-f8261",
+    storageBucket: "meme-f8261.appspot.com",
+    messagingSenderId: "637914597653"
+  };
+  firebase.initializeApp(config);
+</script>
+
+    <script src="https://cdn.firebase.com/libs/firebaseui/2.7.0/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.7.0/firebaseui.css" />
+    <script type="text/javascript">
+        // FirebaseUI config.
+        var uiConfig = {
+            signInSuccessUrl: 'loginferdig.html',
+            signInOptions: [
+                // Leave the lines as is for the providers you want to offer your users.
+                firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+                firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+                firebase.auth.GithubAuthProvider.PROVIDER_ID,
+                firebase.auth.EmailAuthProvider.PROVIDER_ID,
+            ],
+            // Terms of service url.
+            tosUrl: '<your-tos-url>'
+        };
+
+        // Initialize the FirebaseUI Widget using Firebase.
+        var ui = new firebaseui.auth.AuthUI(firebase.auth());
+        // The start method will wait until the DOM is loaded.
+        ui.start('#firebaseui-auth-container', uiConfig);
+    </script>
+</head>
+<style>
+    body {
+        background-image: url("IT.gif");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    h1 {
+
+        color: dodgerblue;
+        font-family: 'Alfa Slab One', cursive;
+        font-size: 75px;
+    }
+</style>
+
+
+<body>
+<!-- The surrounding HTML is left untouched by FirebaseUI.
+     Your app may use that space for branding, controls and other customizations.-->
+<h1 align="center">4FreeChat</h1>
+<div id="firebaseui-auth-container"></div>
+</body>
+</html>
