@@ -1,0 +1,29 @@
+body {
+    background-color: #2B2828;
+    text-align: center;
+}
+
+main {
+
+}
+
+.grow
+{
+    margin-top: 100px;
+    position: relative;
+    display: inline-block;
+    width: 20%;
+    height: 100px;
+    margin-right: 10px;
+    transition: all 0.4s ease;
+
+}
+
+.grow:hover
+{
+    transform: scale(1.5);
+    margin-right: 40px;
+    margin-left: 26px;
+}
+
+
