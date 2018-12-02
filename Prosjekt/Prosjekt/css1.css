@@ -16,7 +16,7 @@ main {
     height: 250px;
     margin-right: 10px;
     transition: all 0.4s ease;
-
+    margin: 200px;
 }
 
 .grow:hover
@@ -27,7 +27,6 @@ main {
 }
 
 #spaceinvaders {
-    background-image: url("https://i.gyazo.com/a08e4e733a325b1165f2fe81d393f912.gif");
+    background-image: url("spaceinvaders.png");
     background-size: cover;
 }
-
