@@ -12,11 +12,11 @@ main {
     margin-top: 100px;
     position: relative;
     display: inline-block;
-    width: 250px;
-    height: 250px;
+    width: 300px;
+    height: 300px;
     margin-right: 10px;
     transition: all 0.4s ease;
-    margin: 200px;
+    margin: 100px;
 }
 
 .grow:hover
@@ -28,5 +28,10 @@ main {
 
 #spaceinvaders {
     background-image: url("spaceinvaders.png");
+    background-size: cover;
+}
+
+#noe {
+    background-image: url("Spill.png");
     background-size: cover;
 }
