@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>filmer</title>
+</head>
+<body>
+
+<ul id="filmliste">
+
+</ul>
+
+<script>
+    let filmliste = document.querySelector("#filmliste");
+let filmer = ["Ben Hur", "Infinity War", "Star wars", "Shawshank Redemption", "Thor"];
+    for (let i=0; i < filmer.length; i++){
+        document.write(filmer[i]);
+    }
+        for (let Thor of filmer) {
+            filmliste.innerHTML += `<li> ${Thor}</li>`;
+
+        }
+
+        filmliste.push("Ant man");//legger til element//
+    filmliste.unshift("Infinity war");//fjerner element//
+    filmliste.pop();//fjerner siste elementet//
+    filmliste.shift();//fjerner første elementet//
+
+    filmliste.splice(1,2)//første tall: hvilken, andre tall:hvor mange
+</script>
+
+
+</body>
+</html>

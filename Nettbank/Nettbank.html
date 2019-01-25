@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nettbank</title>
+
+    <style>
+
+
+         button {
+             width: 100px;
+             height: 50px;
+
+         }
+        header{
+            height: 150px;
+
+        }
+
+        div {
+           border-color: lightseagreen;
+            border-style: solid;
+            width: 200px;
+            height: 25px;
+            text-align: center;
+           background-color: snow;
+
+
+
+        }
+        a {
+        position: static;
+         right: 100px;
+        }
+         input {
+            width: 100px;
+            height: 25px;
+            border-color: lightseagreen;
+            border-style: solid;
+
+        }
+
+
+
+    </style>
+
+</head>
+<body>
+
+<header>
+
+
+
+ <h1>Sandvika Sparebank</h1>
+<input type="number" id="inpTall" onfocus="this.value=''" style="float: left" placeholder="Sett inn penger">
+<button id="leggInn" style="float: left">Legg inn</button>
+
+
+
+    <div id="balance" style="float: left;">Brukskonto</div>
+
+
+
+
+<input type="number" id="taUt" class="Uttak" onfocus="this.value=''" style="float: right" placeholder="Ta ut penger">
+<button id="ut" class="Uttak" style="float: right">Ta ut</button>
+
+
+
+</header>
+
+<main>
+    <button onclick="myFunction()">Åpne sparekonto</button>
+    <button id="overfor" onclick="overfor()">Overfør</button>
+    <input type="number" placeholder="Brukskonto" id="overforinput">
+</main>
+
+
+<script>
+    let inpTall = document.getElementById("inpTall");
+    let balance = document.getElementById("balance");
+    let leggInn = document.getElementById("leggInn");
+    let taUT = document.getElementById("taUt");
+    let ut = document.getElementById("ut");
+    let saldo =  0;
+    let overforInp = document.getElementById("overforinput");
+    let nyepenger = 0;
+    leggInn.onclick = function(){
+        if (inpTall.value > 0) {
+            saldo = saldo + Number(inpTall.value);
+            balance.innerHTML = "Din saldo er:" + " " + saldo + "kr";
+        }
+        else {
+            alert("Du kan ikke sette inn negativt med penger")
+        }
+    };
+
+    ut.onclick = function () {
+        if (saldo > 0) {
+            saldo = saldo - Number(taUT.value);
+            balance.innerHTML = "Din saldo er:" +  " " + saldo + "kr";
+
+        }
+        else {
+            alert("Du kan ikke ta ut så mye!");
+        }
+    };
+
+    function myFunction() {
+        var div = document.createElement("div");
+        document.body.appendChild(div);
+        div.classList.add("sparkontoer");
+        div.id = ("ide")
+
+    }
+    function overfor() {
+       saldo = saldo - Number(overforInp.value);
+       nyepenger = nyepenger + Number(overforInp.value);
+       ide.innerHTML = nyepenger;
+       balance.innerHTML = "Din saldo er:" +  " " + saldo + "kr";
+   }
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

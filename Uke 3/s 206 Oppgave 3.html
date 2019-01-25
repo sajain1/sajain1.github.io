@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>oppgave 3</title>
+</head>
+<body>
+
+<img src="bilde1.jpg" id="slideshow">
+
+<button id="neste">Neste</button>
+<button id="forrige">Forrige</button>
+
+<script>
+
+    let neste = document.querySelector("neste");
+    let forrige = document.querySelector("forrige");
+    let slideshow = document.querySelector("slideshow");
+    let bildeliste = ["bilde1.jpg", "bilde2.jpg", "bilde3.jpg"];
+     let i = 0;
+    neste.onclick = function () {
+            i++;
+            if (i === bildeliste.length) {
+                i = 0;
+            }
+            slideshow
+    }
+
+
+
+
+</script>
+</body>
+</html>

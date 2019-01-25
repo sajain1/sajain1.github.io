@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Oppgave 6</title>
+</head>
+<body>
+
+<input type="text" id="inp">
+<button id="knapp">Legg til</button>
+<p id="tekst"></p>
+
+<script>
+
+    let inp = document.getElementById("inp");
+    let array = [];
+    let knapp = document.getElementById("knapp");
+    let tekst = document.getElementById("tekst");
+
+
+    knapp.onclick = function () {
+        array.push(inp.value);
+       tekst.innerHTML = array.join("<br>");
+    }
+
+
+
+
+</script>
+
+
+</body>
+</html>
