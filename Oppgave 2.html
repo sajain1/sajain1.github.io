@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Huskeliste</title>
+</head>
+
+<style>
+    div {
+        background-color: lightgrey;
+        font-family: sans-serif;
+        font-size: 18px;
+    }
+
+
+</style>
+
+<body>
+
+<input type="text" id="huskeliste" placeholder="Hva skal du huske på?">
+
+
+<script>
+
+    let huskeliste = document.getElementById("huskeliste");
+
+    window.onkeydown = function (event) {
+     if (event.code === "Enter")   {
+         let div = document.createElement("div");
+         document.body.appendChild(div);
+         div.innerHTML = huskeliste.value;
+
+     }
+
+    }
+
+
+
+</script>
+
+
+
+</body>
+</html>

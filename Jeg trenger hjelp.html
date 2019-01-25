@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>App</title>
+    <style>
+
+        div {
+            font-size: 18px;
+            font-family: sans-serif;
+            background-color: lightgrey;
+            margin: 10px;
+
+
+        }
+        button {
+            padding: 7px;
+            text-align: center;
+        }
+        input {
+            height: 25px;
+        }
+
+    </style>
+</head>
+<body>
+
+<input type="text" id="inpNavn" placeholder="Navn">
+
+<input type="text" id="inpProb" placeholder="Problem">
+
+<button id="btn">Send problem</button>
+
+
+<script>
+    let inpProb = document.querySelector("#inpProb");
+    let inpNavn = document.querySelector("#inpNavn");
+    let btn = document.getElementById("btn");
+
+    btn.onclick = function () {
+
+            let div = document.createElement("div");
+            div.className = "div";
+            div.innerHTML = "Navn:" +" " + inpNavn.value + `<br>` + "Problem:" + " " +inpProb.value;
+            document.body.appendChild(div);
+    };
+
+   window.onkeydown = function (event) {
+       if(event.code === "Enter") {
+           let div = document.createElement("div");
+           div.className = "div";
+           div.innerHTML = "Navn:" +" " + inpNavn.value + `<br>` + "Problem:" + " " +inpProb.value;
+           document.body.appendChild(div);
+       }
+    }
+
+
+</script>
+
+
+</body>
+</html>
