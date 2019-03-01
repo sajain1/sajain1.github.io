@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coockie Clicker</title>
+    <style>
+        #coockie {
+            position: absolute;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="score">Poeng: 0</div>
+
+<img src="Coockie.jpg" id="coockie">
+
+
+
+<script>
+    // Referanser til html elementer
+    let coockie = document.querySelector("#coockie");
+    let score = document.querySelector("#score");
+
+    //global variabel
+    let poeng = 0;
+
+    //Hendelseslyttere
+    coockie.onclick = gameloop;
+    window.onkeydown = gameloop();
+
+    function gameloop() {
+        merpoeng();
+        flyttCoockie();
+        bigCoockie();
+        if (poeng <= 100) {
+            requestAnimationFrame(gameloop)
+        }
+    }
+    
+    //funksjonsdefinisjoner
+    function merpoeng() {
+        poeng += 1;
+        score.innerHTML = `poeng: ${poeng}`;
+    }
+    function flyttCoockie() {
+        let x = Math.random()*(window.innerHeight-100);
+        let y = Math.random()*(window.innerWidth-100);
+        coockie.style.left = x + "px";
+        coockie.style.top = y + "px";
+
+    }
+
+    function bigCoockie() {
+        coockie.style.transform = "scale(2)";
+    }
+
+</script>
+
+
+</body>
+</html>

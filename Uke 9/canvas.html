@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canas</title>
+</head>
+<body>
+
+<canvas id="dvdCanvas" width="400px" height="200px"></canvas>
+
+<script>
+    //referanser til HTMl-elementer
+    const dvdCanvas = document.querySelector("#dvdCanvas");
+    const ctx = dvdCanvas.getContext("2d");
+
+    //globale variabler
+
+    let figur1 = {
+        bredde: 150,
+        hoyde: 30,
+        xpos: 60,
+        ypos: 70,
+        farge: "green",
+        xfart: 10,
+        xretning: 1,
+        yfart: 10,
+        yretning: 1
+
+    };
+
+
+
+
+
+
+    //setup
+    gameloop();
+
+
+
+    //funksjons definisjoner
+    function gameloop() {
+        clearCanvas();
+        tegnfirkant(figur1);
+        flyttFirkant(figur1);
+        requestAnimationFrame(gameloop)
+    }
+
+    function  tegnfirkant(firkant) {
+        ctx.fillStyle = firkant.farge;
+        ctx.fillRect(firkant.xpos,firkant.ypos,firkant.bredde,firkant.hoyde)
+    }
+    function flyttFirkant(firkant) {
+       firkant.xpos = firkant.xpos + (firkant.xretning * firkant.xfart);
+        firkant.ypos = firkant.ypos + (firkant.yretning * firkant.yfart);
+    }
+    function clearCanvas() {
+        ctx.fillStyle = "white";
+        ctx.fillRect(0,0,dvdCanvas.width,dvdCanvas.height)
+    }
+</script>
+
+
+</body>
+</html>

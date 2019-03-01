@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pong</title>
+    <style>
+        #areal {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="areal" width="400" height="300"></canvas>
+
+<script>
+
+    let areal = document.querySelector("#areal");
+    let ctx =areal.getContext("2d");
+
+    let bane = {
+        bredde: areal.width,
+        hoyde:areal.height,
+        gressfarge: "DarkGreen"
+    };
+
+    let ball = {
+        radius: 7,
+        xpos: 100,
+        ypos: 100,
+        farge: snow,
+        xretning: -1,
+        yretning: 1,
+        xfart: 4,
+        yfart: 4
+
+    };
+
+
+
+    function tegnball() {
+        ctx.beginPath();
+        ctx.arc(ball.xpos,ball.ypos,ball.radius,0,Math.PI*2);
+        ctx.closePath();
+        ctx.fillStyle = ball.farge;
+        ctx.fill();
+        ball.xpos=ball.xpos+ball.xfart*ball.xretning;
+        ball.ypos=ball.ypos+ball.yfart*ball.yretning;
+
+    }
+
+
+</script>
+
+
+</body>
+</html>
