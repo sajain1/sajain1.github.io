@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coockie clicker</title>
+    <style>
+        body {
+            font-size: 16px;
+            font-family: sans-serif;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        .split {
+            float: left;
+            width: 33.33%;
+            padding: 10px;
+            height: 100%;
+        }
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        #kjeks {
+            left: 75px;
+            top: 150px;
+            position: relative;
+            height: 196px;
+            width: 196px;
+        }
+        #tabell, th ,td {
+            border: solid black 2px;
+            width: 100%;
+            border-collapse:collapse ;
+        }
+
+        @media screen and (max-width: 600px) {
+            .column {
+                width: 100%;
+            }
+        }
+        #middle > div {
+            border: solid 2px black;
+            width: 100%;
+            margin: 10px;
+        }
+        #score {
+            font-size: 40px;
+            font-family: sans-serif;
+        }
+        button {
+            padding: 10px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="row">
+
+
+    <div class="split">
+        <div id="score">POENG: 0</div>
+        <div id="cps">Cps: 0</div>
+        <div>
+        <img src="Coockie.png" id="kjeks">
+        </div>
+    </div>
+
+    <div class="split" id="middle">
+        <div>Antall:</div>
+        <div>Antall:</div>
+        <div>Antall:</div>
+    </div>
+
+    <div class="split">
+        <table id="tabell">
+            <tr>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Buy</th>
+            </tr>
+            <tr>
+                <td>Cursor</td>
+                <td>50</td>
+                <td><button class="kjop" id="Cursor">Get</button></td>
+            </tr>
+            <tr>
+                <td>Granny</td>
+                <td>120</td>
+                <td><button class="kjop" id="Granny">Get</button></td>
+            </tr>
+            <tr>
+                <td>Farm</td>
+                <td>1100</td>
+                <td><Button class="kjop" id="Farm">Get</Button></td>
+            </tr>
+
+        </table>
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+    //globale variabler
+    let kjeks = document.querySelector("#kjeks");
+    let score = document.querySelector("#score");
+    let cps = document.querySelector("#cps");
+    let cursor= document.querySelector("#Cursor");
+    let granny= document.querySelector("#Grany");
+    let farm= document.querySelector("#Farm");
+    let poeng = 0;
+    let cops = 0;
+
+
+
+    //setup
+    gameloop();
+
+
+    kjeks.onclick = merkjeksclick;
+    cursor.onclick = addCursor();
+
+    function gameloop() {
+
+        requestAnimationFrame(gameloop)
+    }
+
+    //animasjoner
+    let kjeksCss = [
+        {
+            transform:"rotate(0deg)"
+        },
+        {
+            transform:"rotate(360deg)"
+        }
+    ];
+    let kjeksEgenskaper = {
+        duration: 15000,
+        iterations: Infinity,
+    };
+    kjeks.animate(kjeksCss,kjeksEgenskaper);
+
+
+    function merkjeksclick() {
+        poeng +=1;
+        score.innerHTML = `Poeng: ${poeng}`;
+    }
+    
+    function mercps() {
+
+            poeng += cops;
+            score.innerHTML = `poeng: ${poeng}`;
+
+    };
+
+    function addCursor() {
+        cops += 0.1;
+        cps.innerHTML = `Cps: ${cops}`;
+    }
+
+
+
+
+
+</script>
+</body>
+</html>
