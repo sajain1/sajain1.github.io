@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Coockie clicker</title>
+    <link href="https://fonts.googleapis.com/css?family=Caveat+Brush" rel="stylesheet">
     <style>
         body {
-            font-size: 16px;
-            font-family: sans-serif;
+            background-image: url("Coockieback.png");
+            font-family: 'Caveat Brush', cursive;
+            overflow: hidden;
+            font-size: 25px;
         }
         * {
             box-sizing: border-box;
         }
+
         .split {
             float: left;
             width: 33.33%;
@@ -30,6 +34,7 @@
             height: 196px;
             width: 196px;
         }
+
         #tabell, th ,td {
             border: solid black 2px;
             width: 100%;
@@ -53,27 +58,47 @@
         button {
             padding: 10px;
         }
+        #curs {
+            background-color: red;
+        }
+        #colone {
+            background-color: saddlebrown;
+            width: 20px;
+            height: 110%;
+            position: absolute;
+            left: 400px;
+        }
+        #top {
+            background-color: saddlebrown;
+            width: 110%;
+            height: 10px;
+            position: absolute;
+        }
+
 
     </style>
 
 </head>
 <body>
-
+    <div id="top"></div>
 <div class="row">
 
 
     <div class="split">
-        <div id="score">POENG: 0</div>
+        <div id="colone"></div>
+        <div id="score" style="font-family: 'Caveat Brush', cursive; font-size: 50px;">POENG: 0</div>
         <div id="cps">Cps: 0</div>
+        <div id="divElement"></div>
         <div>
         <img src="Coockie.png" id="kjeks">
         </div>
+
     </div>
 
     <div class="split" id="middle">
-        <div>Antall:</div>
-        <div>Antall:</div>
-        <div>Antall:</div>
+        <div id="cur">Antall:</div>
+        <div id="gran">Antall:</div>
+        <div id="far">Antall:</div>
     </div>
 
     <div class="split">
@@ -83,19 +108,19 @@
                 <th>Price</th>
                 <th>Buy</th>
             </tr>
-            <tr>
+            <tr id="curb">
                 <td>Cursor</td>
-                <td>50</td>
+                <td id="pricec">25</td>
                 <td><button class="kjop" id="Cursor">Get</button></td>
             </tr>
-            <tr>
+            <tr id="granb">
                 <td>Granny</td>
-                <td>120</td>
+                <td id="priceg">125</td>
                 <td><button class="kjop" id="Granny">Get</button></td>
             </tr>
-            <tr>
+            <tr id="farmb">
                 <td>Farm</td>
-                <td>1100</td>
+                <td id="pricef">1100</td>
                 <td><Button class="kjop" id="Farm">Get</Button></td>
             </tr>
 
@@ -114,10 +139,31 @@
     let score = document.querySelector("#score");
     let cps = document.querySelector("#cps");
     let cursor= document.querySelector("#Cursor");
-    let granny= document.querySelector("#Grany");
+    let granny= document.querySelector("#Granny");
     let farm= document.querySelector("#Farm");
+     let cur = document.querySelector("#cur");
+     let gran = document.querySelector("#gran");
+     let far = document.querySelector("#farm");
+     let pricec = document.querySelector("#pricec");
+     let priceg = document.querySelector("#priceg");
+     let pricef = document.querySelector("#pricef");
+     let currentvalue = parseInt("pricec");
+     let curb= document.querySelector("#curb");
+     let granb= document.querySelector("#granb");
+     let farmb= document.querySelector("#farmb");
+    let divElement = document.querySelector("#divElement");
+
+
     let poeng = 0;
     let cops = 0;
+    let antCursor = 0;
+    let antGranny = 0;
+    let antFarm = 0;
+    let frames = 0;
+
+
+
+
 
 
 
@@ -126,11 +172,20 @@
 
 
     kjeks.onclick = merkjeksclick;
-    cursor.onclick = addCursor();
+    cursor.onclick = addCursor;
+    granny.onclick = addgranny;
+    farm.onclick = addFarm;
 
     function gameloop() {
+        frames++;
+        if (frames%60===0) {
+            mercps();
+        }
 
-        requestAnimationFrame(gameloop)
+            addlight();
+        score.innerHTML = `poeng: ${poeng.toFixed(1)}`;
+        cps.innerHTML = `Cps: ${cops.toFixed(1)}`;
+        requestAnimationFrame(gameloop);
     }
 
     //animasjoner
@@ -151,19 +206,66 @@
 
     function merkjeksclick() {
         poeng +=1;
-        score.innerHTML = `Poeng: ${poeng}`;
+        score.innerHTML = `Poeng: ${poeng + antCursor}`;
+        poeng +=antCursor;
     }
     
     function mercps() {
 
             poeng += cops;
-            score.innerHTML = `poeng: ${poeng}`;
 
-    };
+
+    }
 
     function addCursor() {
-        cops += 0.1;
-        cps.innerHTML = `Cps: ${cops}`;
+        if (poeng>=25) {
+            cops += 0.1;
+            antCursor += 1;
+            cur.innerHTML = `Antall: ${antCursor}`;
+            poeng-=25;
+            let element = document.createElement("div");
+            element.innerHTML = `<img src="cursor.png" class="cursors">`;
+            divElement.appendChild(element);
+
+        }
+    }
+
+    function addgranny() {
+        if (poeng>=125) {
+            cops += 10;
+            antGranny += 1;
+            gran.innerHTML = `Antall: ${antGranny}`;
+            poeng-=125
+        }
+    }
+
+    function addFarm() {
+        if (poeng>=1100) {
+            antFarm += 1;
+            cops += 100;
+            far.innerHTML = `Antall: ${antFarm}`;
+            poeng -=1100
+        }
+    }
+    function addlight() {
+        if (poeng>=25) {
+            curb.style.backgroundColor = "lightblue";
+        }
+        else {
+            curb.style.backgroundColor = "lightgrey";
+        }
+        if (poeng>=125) {
+            granb.style.backgroundColor = "lightblue";
+        }
+        else {
+            granb.style.backgroundColor = "lightgrey";
+        }
+        if (poeng>=1100) {
+            farmb.style.backgroundColor = "lightblue";
+        }
+        else {
+            farmb.style.backgroundColor = "lightgrey";
+        }
     }
 
 
