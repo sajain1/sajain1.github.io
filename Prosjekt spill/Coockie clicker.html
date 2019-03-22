@@ -39,6 +39,7 @@
             border: solid black 2px;
             width: 100%;
             border-collapse:collapse ;
+            height: 70px;
         }
 
         @media screen and (max-width: 600px) {
@@ -52,18 +53,17 @@
             margin: 10px;
         }
         #score {
-            font-size: 40px;
-            font-family: sans-serif;
+            font-family: 'Caveat Brush', cursive; font-size: 50px;
+            color: white;
+
         }
         button {
             padding: 10px;
         }
-        #curs {
-            background-color: red;
-        }
+
         #colone {
             background-color: saddlebrown;
-            width: 20px;
+            width: 10px;
             height: 110%;
             position: absolute;
             left: 400px;
@@ -74,6 +74,14 @@
             height: 10px;
             position: absolute;
         }
+        #divElement {
+            height: 50px;
+            display: grid;
+         grid-template-columns: repeat(5, 1fr);
+
+        }
+
+
 
 
     </style>
@@ -86,8 +94,8 @@
 
     <div class="split">
         <div id="colone"></div>
-        <div id="score" style="font-family: 'Caveat Brush', cursive; font-size: 50px;">POENG: 0</div>
-        <div id="cps">Cps: 0</div>
+        <div id="score">POENG: 0</div>
+        <div id="cps" style="color: white;">Cps: 0</div>
         <div id="divElement"></div>
         <div>
         <img src="Coockie.png" id="kjeks">
@@ -99,6 +107,8 @@
         <div id="cur">Antall:</div>
         <div id="gran">Antall:</div>
         <div id="far">Antall:</div>
+        <div id="min">Antall:</div>
+        <div id="fact">Antall:</div>
     </div>
 
     <div class="split">
@@ -120,9 +130,20 @@
             </tr>
             <tr id="farmb">
                 <td>Farm</td>
-                <td id="pricef">1100</td>
+                <td id="pricef">1,100</td>
                 <td><Button class="kjop" id="Farm">Get</Button></td>
             </tr>
+            <tr id="mineb">
+                <td>Mine</td>
+                <td id="pricem">12,000</td>
+                <td><button class="kjop" id="Mine">Get</button></td>
+            </tr>
+            <tr id="factoryb">
+                <td>Factory</td>
+                <td id="pricefa">100,000</td>
+                <td><button class="kjop" id="Factory">Get</button></td>
+            </tr>
+
 
         </table>
 
@@ -143,15 +164,25 @@
     let farm= document.querySelector("#Farm");
      let cur = document.querySelector("#cur");
      let gran = document.querySelector("#gran");
-     let far = document.querySelector("#farm");
+     let far = document.querySelector("#far");
      let pricec = document.querySelector("#pricec");
      let priceg = document.querySelector("#priceg");
      let pricef = document.querySelector("#pricef");
-     let currentvalue = parseInt("pricec");
      let curb= document.querySelector("#curb");
      let granb= document.querySelector("#granb");
      let farmb= document.querySelector("#farmb");
     let divElement = document.querySelector("#divElement");
+    let mineb= document.querySelector("#mineb");
+    let pricem= document.querySelector("#pricem");
+    let factoryb= document.querySelector("#factoryb");
+    let mine= document.querySelector("#Mine");
+    let pricefa= document.querySelector("#pricefa");
+    let factory= document.querySelector("#Factory");
+    let min = document.querySelector("#min");
+    let fact = document.querySelector("#fact");
+
+
+
 
 
     let poeng = 0;
@@ -160,6 +191,8 @@
     let antGranny = 0;
     let antFarm = 0;
     let frames = 0;
+    let antMine = 0;
+    let antFactory = 0;
 
 
 
@@ -175,6 +208,8 @@
     cursor.onclick = addCursor;
     granny.onclick = addgranny;
     farm.onclick = addFarm;
+    mine.onclick = addMine;
+    factory.onclick = addFactory;
 
     function gameloop() {
         frames++;
@@ -183,7 +218,7 @@
         }
 
             addlight();
-        score.innerHTML = `poeng: ${poeng.toFixed(1)}`;
+        score.innerHTML = `poeng: ${poeng.toFixed(1).replace(/\B(?=(\d{3})+(?!\d))/g,',')}`;
         cps.innerHTML = `Cps: ${cops.toFixed(1)}`;
         requestAnimationFrame(gameloop);
     }
@@ -202,12 +237,25 @@
         iterations: Infinity,
     };
     kjeks.animate(kjeksCss,kjeksEgenskaper);
-
+    
+    let kejksmindre = [
+        {
+            transform: "scale(1)"
+        },
+        {
+            transform: "scale(0.8)"
+        }
+    ];
+    let kjeksmindreEgenskaper = {
+      duration: 300,
+    };
 
     function merkjeksclick() {
         poeng +=1;
         score.innerHTML = `Poeng: ${poeng + antCursor}`;
         poeng +=antCursor;
+        kjeks.animate(kejksmindre,kjeksmindreEgenskaper);
+        divElement.animate(kejksmindre, kjeksmindreEgenskaper);
     }
     
     function mercps() {
@@ -223,10 +271,11 @@
             antCursor += 1;
             cur.innerHTML = `Antall: ${antCursor}`;
             poeng-=25;
-            let element = document.createElement("div");
-            element.innerHTML = `<img src="cursor.png" class="cursors">`;
-            divElement.appendChild(element);
-
+            if (antCursor<21) {
+                let element = document.createElement("div");
+                element.innerHTML = `<img src="cursor.png" class="cursors" style="width: 40px" height="40px">`;
+                divElement.appendChild(element);
+            }
         }
     }
 
@@ -235,7 +284,7 @@
             cops += 10;
             antGranny += 1;
             gran.innerHTML = `Antall: ${antGranny}`;
-            poeng-=125
+            poeng-=125;
         }
     }
 
@@ -244,9 +293,28 @@
             antFarm += 1;
             cops += 100;
             far.innerHTML = `Antall: ${antFarm}`;
-            poeng -=1100
+            poeng-=1100;
         }
     }
+
+    function addMine() {
+        if (poeng>=12000) {
+            cops += 300;
+            antMine += 1;
+            min.innerHTML = `Antall: ${antMine}`;
+            poeng-=12000;
+        }
+    }
+
+    function addFactory() {
+        if (poeng>=100000) {
+            cops += 12500;
+            antFactory += 1;
+            fact.innerHTML = `Antall: ${antFactory}`;
+            poeng-=100000;
+        }
+    }
+
     function addlight() {
         if (poeng>=25) {
             curb.style.backgroundColor = "lightblue";
@@ -266,6 +334,18 @@
         else {
             farmb.style.backgroundColor = "lightgrey";
         }
+        if (poeng>=12000) {
+            mineb.style.backgroundColor = "lightblue";
+        }
+        else {
+            mineb.style.backgroundColor = "lightgrey";
+        }
+        if (poeng>=100000) {
+            factoryb.style.backgroundColor = "lightblue";
+        }
+        else {
+            factoryb.style.backgroundColor = "lightgrey";
+        }
     }
 
 
@@ -274,4 +354,4 @@
 
 </script>
 </body>
-</html>
+</html>s
