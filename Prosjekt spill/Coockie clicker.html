@@ -182,9 +182,7 @@
     let fact = document.querySelector("#fact");
 
 
-
-
-
+    //verdi variabler
     let poeng = 0;
     let cops = 0;
     let antCursor = 0;
@@ -196,14 +194,11 @@
 
 
 
-
-
-
-
     //setup
     gameloop();
 
 
+    //onclicks til funksjoner som funker når siden starter
     kjeks.onclick = merkjeksclick;
     cursor.onclick = addCursor;
     granny.onclick = addgranny;
@@ -211,6 +206,8 @@
     mine.onclick = addMine;
     factory.onclick = addFactory;
 
+
+    //gameloop som skjer nå siden starter
     function gameloop() {
         frames++;
         if (frames%60===0) {
@@ -250,6 +247,7 @@
       duration: 300,
     };
 
+    //gameloop funksjoner
     function merkjeksclick() {
         poeng +=1;
         score.innerHTML = `Poeng: ${poeng + antCursor}`;
@@ -265,6 +263,7 @@
 
     }
 
+    //funksjoner som legger til CPS
     function addCursor() {
         if (poeng>=25) {
             cops += 0.1;
@@ -314,7 +313,7 @@
             poeng-=100000;
         }
     }
-
+    //legger til lys på knapper
     function addlight() {
         if (poeng>=25) {
             curb.style.backgroundColor = "lightblue";
@@ -354,4 +353,4 @@
 
 </script>
 </body>
-</html>s
+</html>
